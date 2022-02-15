@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Projeto from '../../pages/projeto';
-import Atividade from '../../pages/atividade';
+import Projeto from '../../pages/componenteSolar';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 class Rotas extends Component {
@@ -10,8 +9,7 @@ class Rotas extends Component {
             <Router>
                 <Switch>
                     <Route path="/" exact component={Projeto} />
-                    <Route path="/projeto" exact component={Projeto} />
-                    <Route path="/atividade" exact component={Atividade} />
+                    <Route path="/componente" exact component={Projeto} />
                 </Switch>
             </Router>
         )

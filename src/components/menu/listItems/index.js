@@ -9,17 +9,11 @@ import { Link } from "react-router-dom";
 
 export const mainListItems = (
   <div>
-    <ListItem button component={Link} to="/projeto" >
+    <ListItem button component={Link} to="/componente" >
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Projetos" />
-    </ListItem>
-    <ListItem button component={Link} to="/atividade" >
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Ativdades" />
+      <ListItemText primary="Componentes Solar" />
     </ListItem>
   </div>
 );

@@ -8,9 +8,8 @@ import Copyright from '../../components/copyright';
 import MenuDashborad from '../../components/menu';
 import { useStyles } from '../../components/constantes';
 import Api from '../../services/utils/RestClient';
-import { dataFormat } from '../../services/utils/Util';
 import Link from '@material-ui/core/Link';
-import ModalCadastro from '../../components/projetoManutencao';
+import ModalCadastro from '../../components/componenteManutencao';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -18,14 +17,14 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-export default function Projeto() {
+export default function ComponenteSolar() {
     const classes = useStyles();
     const [rows, setRows] = useState([]);
     const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
         async function getItems() {
-            const { data } = await Api.get("/projetos");
+            const { data } = await Api.get("/intelbras/solar/componente");
 
             setRows(data);
         }
@@ -41,10 +40,10 @@ export default function Projeto() {
         setOpen(false);
     };
 
-    async function salvarProjeto(data) {
-        var response = await Api.post("/projetos", data);
-        if (response.status === 200) {
-            const { data } = await Api.get("/projetos");
+    async function salvarComponente(data) {
+        var response = await Api.post("/intelbras/solar/componente", data);
+        if (response.status === 201) {
+            const { data } = await Api.get("/intelbras/solar/componente");
 
             setRows(data);
         }
@@ -52,12 +51,12 @@ export default function Projeto() {
 
     return (
         <div className={classes.root}>
-            <ModalCadastro title="Cadastro Projeto"
+            <ModalCadastro title="Cadastro Componente"
                 open={open}
                 handleClose={handleClose}
-                salvarProjeto={salvarProjeto} />
+                salvarComponente={salvarComponente} />
             <CssBaseline />
-            <MenuDashborad title="Projetos">
+            <MenuDashborad title="Componente">
                 <main className={classes.content}>
                     <div className={classes.appBarSpacer} />
                     <Container maxWidth="lg" className={classes.container}>
@@ -70,10 +69,9 @@ export default function Projeto() {
                                             <TableRow>
                                                 <TableCell>Id</TableCell>
                                                 <TableCell>Nome</TableCell>
-                                                <TableCell>Data Inicio</TableCell>
-                                                <TableCell>Data Final</TableCell>
-                                                <TableCell>Percentual</TableCell>
-                                                <TableCell>Atrasado</TableCell>
+                                                <TableCell>Altura</TableCell>
+                                                <TableCell>Largura</TableCell>
+                                                <TableCell>Profundidade</TableCell>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
@@ -81,10 +79,9 @@ export default function Projeto() {
                                                 <TableRow key={row.id}>
                                                     <TableCell>{row.id}</TableCell>
                                                     <TableCell>{row.nome}</TableCell>
-                                                    <TableCell>{dataFormat(row.dataInicio)}</TableCell>
-                                                    <TableCell>{dataFormat(row.dataFinal)}</TableCell>
-                                                    <TableCell>{row.percentualAndamento}%</TableCell>
-                                                    <TableCell>{row.atrasado ? 'Sim' : 'Não'}</TableCell>
+                                                    <TableCell>{row.altura}</TableCell>
+                                                    <TableCell>{row.largura}</TableCell>
+                                                    <TableCell>{row.profundidade}</TableCell>
                                                 </TableRow>
                                             ))}
                                         </TableBody>
