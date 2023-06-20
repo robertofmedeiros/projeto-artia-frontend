@@ -14,4 +14,13 @@ O serviço do backend precisar estar iniciado para cadastrar ou trazer informaç
 Esse é o frontend para manutenção de projetos e atividades, o front não acessa diretamente a base dados. A comunicação é feita realizando requests para o backend, onde o mesmo irá fazer as consultar e inserções na base de dados,
 ### Pendencias
 Não houve tempo para trabalhar o updade e delete de atividades e projeto, esses itens ficaram como pendencias do projeto para um proxima release.
+
+```mermaid
+flowchart TD;
+  A[Inser dados do cliente] --> B{Cliente Existe na base?}
+  B -- Sim --> C[Alerta de Erro]
+  B -- Não --> D[Cadastrar cliente na base]
+  C --> E[Fim]
+  D --> E
+```
    
